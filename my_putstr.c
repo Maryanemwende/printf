@@ -22,7 +22,9 @@ int my_putstr(char *str)
 		}
 	}
 	else if (str == NULL)
+	{
 		return (NULL);
+	}
 
 	return (count);
 }
