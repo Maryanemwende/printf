@@ -3,9 +3,10 @@
 /**
  * print_char - prints character
  *
- * @c: char to print
+ * @list: list of arguments
  */
-void print_char(char c)
+void print_char(va_list list)
 {
+	char a = va_arg(list, int);
 	my_putchar(c);
 }

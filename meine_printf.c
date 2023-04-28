@@ -9,44 +9,40 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
+	va_list list;
 
-	unsigned int elem = 0, count = 0;
-	char *str;
-	char c;
+	int count = 0;
+	const char *elem = format;
 
-	va_start(args, format);
-	while (format[elem])
+	format_t data[] = {
+		{"c", print_char},
+		{"s", my_putstr},
+		{"%", my_print_percent}
+	};
+
+	va_start(list, format);
+	while (*elem)
 	{
-		if (format[elem] == '%')
+		if (*elem == '%')
 		{
-			format++;
-			switch (format[elem])
+			elem++;
+			for (h = 0; h < sizeof(data) / sizeof(data[0]); h++)
 			{
-				case 'c':
-					c = va_arg(args, int);
-					my_putchar(c);
+				if (*elem == *(data[h].specifier))
+				{
+					data[h].print_fn(list);
+					count++;
 					break;
-				case 's':
-					str = va_arg(args, char *);
-					my_putstr(str);
-					if (str == NULL)
-					{
-						my_putstr("(nil)");
-					}
-					break;
-				case '%':
-					my_putchar('%');
-					break;
+				}
 			}
 		}
 		else
 		{
-			my_putchar(format[elem]);
-		}		
-		format++;
-		count += 1;
+			my_putchar(*elem);
+			count++;
+		}
+		elem++;
 	}
-	va_end(args);
+	va_end(list);
 	return (count);
-}
+}	

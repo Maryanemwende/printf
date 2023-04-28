@@ -2,15 +2,15 @@
 
 /**
  * my_putstr - prints a string
- * @str:string to be printed
+ * @list: list of arguments
  *
- * Return:a value
+ * Return: a string
  */
 
-int my_putstr(char *str)
+int my_putstr(va_list list)
 {
 	int elem = 0;
-	int count = 0;
+	char *str = va_arg(list, char *)
 
 	if (str)
 	{
@@ -21,7 +21,10 @@ int my_putstr(char *str)
 			elem++;
 		}
 	}
-
+	else
+	{
+		str = "(null)";
+	}
 	return (count);
 }
 
