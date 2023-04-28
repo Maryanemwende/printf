@@ -28,6 +28,8 @@ int _printf(const char *format, ...)
 				case 's':
 					str = va_arg(args, char *);
 					my_putstr(str);
+					if (str == NULL)
+						my_putstr("(nil)");
 					break;
 				case '%':
 					my_putchar('%');
