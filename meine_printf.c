@@ -14,29 +14,31 @@ int _printf(const char *format, ...)
 	char *str;
 
 	va_start(args, format);
-	for (elem = 0; format[elem] != '\0'; elem++)
+	while (format[elem])
 	{
-		if (format[elem] != '%')
-			my_putchar(format[elem]);
-		else
+		if (format[elem] == '%')
 		{
-			switch (format[++elem])
+			format++;
+			switch (format[elem])
 			{
 				case 'c':
-					my_putchar(va_arg(args, int));
+					c = va_arg(args, int);
+					print_char(c);
 					break;
 				case 's':
 					str = va_arg(args, char *);
-					my_putstr(str);
+					print_s(str);
 					if (str == NULL)
 						my_putstr("(nil)");
 					break;
 				case '%':
 					my_putchar('%');
 					break;
-				default:
-					continue;
 			}
+		}
+		else
+		{
+			my_putchar(format[elem]);
 		}
 		count += 1;
 	}
