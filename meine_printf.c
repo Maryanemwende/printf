@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 
-	int count = 0;
+	int h, count = 0;
 	const char *elem = format;
 
 	format_t data[] = {
