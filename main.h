@@ -17,6 +17,6 @@ int _printf(const char *format, ...);
 void print_s(char *s);
 void print_char(va_list list);
 void my_atoi(int digit, char *str);
-int my_print_percent(__attribute__((unused)) va_list list);
+void my_print_percent(__attribute__((unused)) va_list list);
 
 #endif
