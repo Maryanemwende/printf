@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * _printf - produces output according to a format
@@ -10,8 +11,9 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 
-	unsigned int elem, count = 0;
+	unsigned int elem = 0, count = 0;
 	char *str;
+	char c;
 
 	va_start(args, format);
 	while (format[elem])
@@ -23,13 +25,15 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = va_arg(args, int);
-					print_char(c);
+					my_putchar(c);
 					break;
 				case 's':
 					str = va_arg(args, char *);
-					print_s(str);
+					my_putstr(str);
 					if (str == NULL)
+					{
 						my_putstr("(nil)");
+					}
 					break;
 				case '%':
 					my_putchar('%');
@@ -39,7 +43,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			my_putchar(format[elem]);
-		}
+		}		
+		format++;
 		count += 1;
 	}
 	va_end(args);
