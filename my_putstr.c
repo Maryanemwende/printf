@@ -21,10 +21,6 @@ int my_putstr(char *str)
 			elem++;
 		}
 	}
-	else if (str == NULL)
-	{
-		return (NULL);
-	}
 
 	return (count);
 }
