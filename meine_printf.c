@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 			{
 				if (*elem == *(data[h].specifier))
 				{
-					data[h].print_fn(list);
+					data[h].print_n(list);
 					count++;
 					break;
 				}
